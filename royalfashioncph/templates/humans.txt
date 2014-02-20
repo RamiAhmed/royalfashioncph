@@ -1,0 +1,20 @@
+/* TEAM */
+Co-Founder and Graphics Artist: Daniel Thormod Staal
+Contact: daniel [at] alphastagestudios.com
+From: Copenhagen, Denmark
+
+Co-Founder and Programmer: Rami Ahmed Bock
+Contact: rami [at] alphastagestudios.com
+From: Copenhagen, Denmark
+
+/* THANKS */
+
+
+
+/* SITE */
+Last update: 2014/02/20
+Standards: HTML5, CSS3
+Language: English
+Doctype: HTML5
+IDE: Sublime Text 2, Photoshop
+Software: Python, Django, Heroku
