@@ -1,7 +1,13 @@
 body, html {
+    margin: 0px;
+    padding: 0px;
+
+    min-height: 100%;
+    min-width: 100%;
+
     background-image: url(img/royal_fashion_logo.jpg);
     background-repeat: no-repeat;
-    background-size: 100% auto;
+    background-size: contain;
     background-position: center center;
     background-color: #ffffff;
 }
