@@ -11,3 +11,23 @@ body, html {
     background-position: center center;
     background-color: #ffffff;
 }
+
+#coming-soon {
+    width: 100%;
+    height: auto;
+
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    margin: 5px auto;
+    padding: 10px;
+
+    font-family: 'Pacifico', cursive;
+}
+
+.addthis_toolbox {
+    margin: 0px auto;
+    width: 34px;
+}
