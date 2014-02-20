@@ -9,6 +9,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^humans\.txt$', 'alphastage.views.humanstxt', name='humanstxt'),
+    url(r'^humans\.txt$', 'royalfashioncph.views.humanstxt', name='humanstxt'),
     url(r'^robots\.txt$', include('robots.urls')),
 )
