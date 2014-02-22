@@ -53,6 +53,9 @@ body, html {
 
     display: inline-block;
 
+    width: 32px;
+    height: 32px;
+
     border-color: transparent;
     border-radius: 5px;
 
