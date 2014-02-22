@@ -53,7 +53,7 @@ body, html {
 
     display: inline-block;
 
-    width: 32px;
+    width: 36px;
     height: 32px;
 
     border-color: transparent;
@@ -64,5 +64,5 @@ body, html {
 
 .addthis_toolbox {
     margin: 1px auto;
-    width: 34px;
+    width: 72px;
 }
