@@ -45,6 +45,20 @@ body, html {
     font-size: 26px;
 }
 
+#trendsales-link {
+    background-image: url(img/trendsales-link.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+
+    display: inline-block;
+
+    border-color: transparent;
+    border-radius: 5px;
+
+    padding: 5px;
+}
+
 .addthis_toolbox {
     margin: 1px auto;
     width: 34px;
