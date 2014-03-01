@@ -12,7 +12,7 @@ From: Copenhagen, Denmark
 
 
 /* SITE */
-Last update: 2014/02/20
+Last update: 2014/02/28
 Standards: HTML5, CSS3
 Language: English
 Doctype: HTML5
