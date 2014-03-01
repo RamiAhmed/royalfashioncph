@@ -41,7 +41,7 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 import dj_database_url
-DATABASES = {'default': dj_database_url.config()}
+DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
 
 # Application definition
 
@@ -98,7 +98,7 @@ LANGUAGE_CODE = 'da-DK'
 TIME_ZONE = 'Europe/Copenhagen'
 
 # If you set this to False, Django will make some optimizations so as not to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and calendars according to the current locale.
 USE_L10N = True

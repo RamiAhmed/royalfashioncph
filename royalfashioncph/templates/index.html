@@ -1,88 +1,13 @@
-<!DOCTYPE html>
-
-{% load google_analytics %}
-{% load static from staticfiles %}
+{% extends 'base.html' %}
 {% load bootstrap3 %}
-{% load compress %}
+{% load static from staticfiles %}
 
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <meta name="description" content="Royal Fashion Copenhagen sælger kvalitetstøj til overkommelige priser."/>
-    <meta name="author" content="Alpha Stage Studios - Rami@alphastagestudios.com"/>
+{% block title %} Hjem {% endblock %}
+{% block pagedescription %} Royal Fashion Copenhagen - vi sælger royalt fashion til overkommelige priser. {% endblock %}
 
 
-    <link rel="publisher" href="" />
-    <link rel="author" href="http://www.royalfashioncph.com{% url 'humanstxt' %}" />
-
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="icon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
-    <link rel="favicon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
-
-    {% bootstrap_css %}
-
-    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-
-    {% compress css inline %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
-    {% endcompress %}
-
-    <title>
-        Royal Fashion Copenhagen
-    </title>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    {% google_analytics %}
-</head>
-
-<body>
-
-    <div id="logo-holder"></div>
-
-    <section id="coming-soon">
-        <p class="text-center">Coming soon!</p>
-
-        <!-- AddThis Follow BEGIN -->
-        <div class="addthis_toolbox addthis_32x32_style addthis_default_style">
-            <a class="addthis_button_facebook_follow" addthis:userid="Royalfashion.dk"></a>
-
-            <a id="trendsales-link" title="Trendsales" target="_blank" href="//www.trendsales.dk/search?q=royal%20fashion"></a>
-        </div>
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53062a980fcd97b7"></script>
-        <!-- AddThis Follow END -->
+{% block content %}
 
 
 
-    </section>
-
-
-    {# Load javascript at bottom for speed optimization #}
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    {% compress js inline %}
-    <script type="text/javascript">
-        if (typeof jQuery == 'undefined') {
-            document.write(unescape("%3Cscript src='{% static 'js/jquery.js' %}' type='text/javascript'%3E%3C/script%3E"));
-        }
-    </script>
-    {% endcompress %}
-
-
-    {# Load Bootstrap javascript #}
-    {% bootstrap_javascript %}
-
-
-</body>
-
-</html>
+{% endblock %}
