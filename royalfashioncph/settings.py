@@ -43,6 +43,10 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
 import dj_database_url
 DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
 
+# Cache
+from memcacheify import memcacheify
+CACHES = memcacheify()
+
 # Application definition
 
 DJANGO_APPS = (
@@ -147,6 +151,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
 )
 
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    ('django.template.loaders.cached.Loader', (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )),
+)
 
 # Robots caching
 ROBOTS_CACHE_TIMEOUT = 60*60*24 # = 24 hours
