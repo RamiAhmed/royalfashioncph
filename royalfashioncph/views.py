@@ -6,6 +6,14 @@ from django.shortcuts import render
 def home(request):
 
     return render(request, 'index.html')
+  
+def springcollection(request):
+    
+    return render(request, 'collection.html')
+
+def omos(request):
+    
+    return render(request, 'omos.html')
 
 def humanstxt(request):
 

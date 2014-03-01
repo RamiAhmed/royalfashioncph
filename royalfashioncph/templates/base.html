@@ -26,7 +26,7 @@
 
     {% bootstrap_css %}
 
-    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css'>
 
     {% compress css inline %}
     <link rel="stylesheet" type="text/css" href="{% settings_value STATIC_URL %}css/style.css" charset="utf-8">
@@ -52,58 +52,66 @@
 
       </header>
     </div>
-
+    
     <div class="content">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
-              <ul class="nav nav-sidebar">
-                <li class="{% navactive request 'home' %}">
-                    <a href="{% url 'home' %}">HJEM</a>
-                </li>
-                <li class="{% navactive request 'spring-collection' %}">
-                    <a href="{% url 'spring-collection' %}">FORÅRSKOLLEKTION</a>
-                </li>
-                <li class="{% navactive request 'om-os' %}">
-                    <a href="{% url 'om-os' %}">OM OS</a>
-                </li>
-              </ul>
+            <!-- SIDEBAR BEGIN -->
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="{% navactive request 'home' %}">
+                        <a href="{% url 'home' %}">HJEM</a>
+                    </li>
+                    <li class="{% navactive request 'spring-collection' %}">
+                        <a href="{% url 'spring-collection' %}">FORÅRSKOLLEKTION</a>
+                    </li>
+                    <li class="{% navactive request 'om-os' %}">
+                        <a href="{% url 'om-os' %}">OM OS</a>
+                    </li>
+                </ul>                
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <div class="content-main">
-                    {% block content %}
-                    {% endblock %}
-                </div><!-- /container -->
-
-                <footer class="footer">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p class="text-center">
-                                Privacy
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <p class="text-center">
-                                Logo
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <p class="text-center">
-                                Sitemap
-                            </p>
-                        </div>
+            <!-- SIDEBAR END -->
+            
+            <!-- PAGE CONTENT BEGIN -->
+            <div class="container content-main">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <!-- PAGE CONTENT END -->
+            
+            <!-- FOOTER BEGIN -->
+            <footer class="footer">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-center">
+                            <br>
+                            Royal Fashion IVS | CVR: <a title="Royal Fashion på CVR.dk" href="//cvr.dk/Site/Forms/PublicService/DisplayCompany.aspx?cvrnr=35639578" target="_blank">DK-35639578</a>
+                        </p>
                     </div>
-                </footer>
-            </div>
+                    <div class="col-md-4">    
+                        <img id="footer-logo" class="img-responsive" alt="Royal Fashion Krone Logo" src="{% settings_value STATIC_URL %}img/royal_logo_nobg.png">
+                        <p class="text-center text-muted">
+                            <a id="alpha-link" href="//www.alphastagestudios.com" target="_blank" title="This website was designed by Alpha Stage Studios">Alpha Stage Studios</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-center">
+                            <br>
+                            Find os på:
+                        </p>
+                        
+                        <div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+                            <a class="addthis_button_facebook_follow" addthis:userid="Royalfashion.dk"></a>
+                            
+                            <a id="trendsales-link" title="Trendsales" target="_blank" href="//www.trendsales.dk/search?q=royal%20fashion"></a>
+                        </div>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53062a980fcd97b7"></script>
+                        
+                    </div>
+                </div>
+            </footer>    
+            <!-- FOOTER END -->
         </div>
-      </div>
     </div>
-
-
-
-
-
-
 
     {# Load javascript at bottom for speed optimization #}
     <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
