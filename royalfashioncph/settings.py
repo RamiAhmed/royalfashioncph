@@ -67,6 +67,7 @@ THIRD_PARTY_APPS = (
     'jquery',
     'bootstrap3',
     'robots',
+    'storages',
 )
 
 LOCAL_APPS = (
@@ -117,22 +118,22 @@ USE_TZ = True
 # Absolute filesystem path to the directory
 # that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = 'mediafiles'
+#MEDIA_ROOT = 'mediafiles'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'staticfiles'
+#STATIC_ROOT = 'staticfiles'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -143,7 +144,7 @@ STATICFILES_FINDERS = (
 )
 
 # Compress should send to and look in static url
-COMPRESS_URL = STATIC_URL
+#COMPRESS_URL = STATIC_URL
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
@@ -210,3 +211,32 @@ LOGGING = {
         },
     }
 }
+
+
+# Amazon S3 with Compressor
+# http://jeanphix.me/2012/02/08/django-heroku-compressor-storages/
+STATICFILES_STORAGE = 'royalfashioncph.storage.CachedS3BotoStorage'
+STATIC_URL = 'https://royalfashion.s3.amazonaws.com/'   
+
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+MEDIA_UPLOAD_ROOT = os.path.join(MEDIA_ROOT, 'uploads')
+
+MEDIA_URL = STATIC_URL + 'media/'
+
+# Compressor
+COMPRESS_ENABLED = DEBUG is False
+if COMPRESS_ENABLED:
+    COMPRESS_CSS_FILTERS = [
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.CSSMinFilter',
+    ]
+    COMPRESS_STORAGE = 'royalfashioncph.storage.CachedS3BotoStorage'
+    COMPRESS_URL = STATIC_URL
+    COMPRESS_OFFLINE = True
+
+# Amazon AWS S3 credientials
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
