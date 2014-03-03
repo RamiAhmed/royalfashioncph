@@ -23,13 +23,28 @@
     </p>
     <p>
         Du kan indtil videre købe vores produkter på Trendsales. <br>
-        Hvis du har nogle spørgsmål, bedes du sende os en <a title="info@royalfashioncph.dk" href="mailto:info@royalfashioncph.dk">email</a>.       
+        Hvis du har nogle spørgsmål, bedes du sende os en <a title="info@royalfashioncph.dk" href="mailto:info@royalfashioncph.dk">email</a> eller kontakte os via formen nedenunder.       
     </p>
 </article>
 
-<article id="kontakt-os">
-    
-</article>
+<hr>
 
+<article id="kontakt-os">
+    <h3>Kontakt Os</h3>
+    <section id="contact-form">
+        {% if feedback %}
+        <div class="alert alert-success">
+            <p>{{ feedback }}</p>
+        </div>
+        {% else %}
+        <form role="form" class="form" action="{% url 'contact' %}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            
+            {% buttons submit='Send Besked' %}{% endbuttons %}
+        </form>
+        {% endif %}
+    </section>
+</article>
 
 {% endblock %}

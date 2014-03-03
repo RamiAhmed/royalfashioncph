@@ -5,7 +5,7 @@ body, html {
     min-height: 99%;
     max-width: 99%;
 
-    background-color: #fcfcfc;
+    background-color: #fffffc;
     color: rgb(25, 25, 25);
     
     font-family: 'Gentium Basic', serif;
@@ -24,17 +24,12 @@ body, html {
     
     width: 100%;
     height: 150px;
-
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
 }
 
 .content {
     display: block;
 
-    margin-top: 150px;
+    margin-top: 10px;
     margin-left: 235px;    
     
     max-width: 100%;
@@ -44,7 +39,7 @@ body, html {
 .content-main {
     display: block;
     
-    padding-bottom: 30px;
+    padding-bottom: 60px;
     padding-left: 10px;
     padding-right: 25px;
   
@@ -64,7 +59,7 @@ body, html {
     padding: 10px 10px;
 
     background-color: rgb(25, 25, 25);
-    color: #fcfcfc;
+    color: #fffffc;
     
     border-radius: 2px;   
     
@@ -125,11 +120,11 @@ body, html {
 .sidebar > .nav > li > a:hover,
 .sidebar > .nav > li > a:focus {
     background-color: rgb(25, 25, 25);
-    color: #fcfcfc;
+    color: #fffffc;
 }
 
 .sidebar > .nav > li > a {
-    background-color: #fcfcfc;
+    background-color: #fffffc;
     color: rgb(25, 25, 25);
     
     margin: 10px 0px;
@@ -156,4 +151,37 @@ body, html {
 .addthis_toolbox {
     margin: 1px auto;
     width: 72px;
+}
+
+
+.shop-image {
+    width: 100px;
+    height: 100px;
+    
+    margin: 5px auto;
+}
+
+.shop-list-item {
+    background-color: #FCFCFC;
+    
+    margin: 10px;
+    padding: 5px;
+    
+    border-radius: 5px;
+    border: transparent;
+}
+
+.shop-list-item:hover,
+.shop-list-item:focus {
+    background-color: rgb(240, 240, 240);
+}
+
+.shop-list-item > a {
+    color: rgb(25, 25, 25);
+    text-decoration: none;
+}
+
+.shop-product-details > .addthis_toolbox {
+    width: 141px;
+    margin: 0px;
 }

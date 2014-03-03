@@ -17,19 +17,19 @@
     <meta name="description" content="{% block pagedescription %}{% endblock %}"/>
     <meta name="author" content="Alpha Stage Studios - Rami@alphastagestudios.com"/>
 
-    <link rel="publisher" href="" />
+    <!--<link rel="publisher" href="" />-->
     <link rel="author" href="//www.royalfashioncph.dk{% url 'humanstxt' %}" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="{% settings_value STATIC_URL %}favicon.ico">
-    <link rel="icon" type="image/x-icon"  href="{% settings_value STATIC_URL %}favicon.ico" >
-    <link rel="favicon" type="image/x-icon"  href="{% settings_value STATIC_URL %}favicon.ico" >
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="icon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
+    <link rel="favicon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
 
     {% bootstrap_css %}
 
     <link href='//fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css'>
 
-    {% compress css inline %}
-    <link rel="stylesheet" type="text/css" href="{% settings_value STATIC_URL %}css/style.css" charset="utf-8">
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
     {% endcompress %}
 
     <title>
@@ -60,12 +60,14 @@
                     <li class="{% navactive request 'home' %}">
                         <a href="{% url 'home' %}">HJEM</a>
                     </li>
-                    <li class="{% navactive request 'spring-collection' %}">
-                        <a href="{% url 'spring-collection' %}">FORÅRSKOLLEKTION</a>
-                    </li>
                     <li class="{% navactive request 'om-os' %}">
                         <a href="{% url 'om-os' %}">OM OS</a>
                     </li>
+                    {% for collection in collections %}
+                    <li class="{% navactive_complex request 'shop' collection.slug %}">
+                        <a href="{% url 'shop' collection.slug %}">{{ collection.name|upper }}</a>
+                    </li>
+                    {% endfor %}
                 </ul>                
             </div>
             <!-- SIDEBAR END -->
@@ -87,7 +89,7 @@
                         </p>
                     </div>
                     <div class="col-md-4">    
-                        <img id="footer-logo" class="img-responsive" alt="Royal Fashion Krone Logo" src="{% settings_value STATIC_URL %}img/royal_logo_nobg.png">
+                        <img id="footer-logo" class="img-responsive" alt="Royal Fashion Krone Logo" src="{% static 'img/royal_logo_nobg.png' %}">
                         <p class="text-center text-muted">
                             <a id="alpha-link" href="//www.alphastagestudios.com" target="_blank" title="This website was designed by Alpha Stage Studios">Alpha Stage Studios</a>
                         </p>
@@ -118,7 +120,7 @@
     {% compress js inline %}
     <script type="text/javascript">
         if (typeof jQuery == 'undefined') {
-            document.write(unescape("%3Cscript src='{% settings_value STATIC_URL %}js/jquery.js' type='text/javascript'%3E%3C/script%3E"));
+            document.write(unescape("%3Cscript src='{% static 'js/jquery.js' %}' type='text/javascript'%3E%3C/script%3E"));
         }
     </script>
     {% endcompress %}

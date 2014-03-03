@@ -10,11 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..').replace('\\', '/')
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
+#BASE_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..').replace('\\', '/')
 
 # Make this unique, and don't share it with anybody.
 from django.utils.crypto import get_random_string
@@ -40,15 +36,17 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-import dj_database_url
-DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
+#import dj_database_url
+#DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
+from postgresify import postgresify
+DATABASES = postgresify()
 
 # Cache
-from memcacheify import memcacheify
-CACHES = memcacheify()
+if not DEBUG: 
+    from memcacheify import memcacheify
+    CACHES = memcacheify()
 
 # Application definition
-
 DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,23 +66,27 @@ THIRD_PARTY_APPS = (
     'bootstrap3',
     'robots',
     'storages',
+    'raven.contrib.django.raven_compat',
+    'sorl.thumbnail',
 )
 
 LOCAL_APPS = (
     'royalfashioncph',
+    'shop',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',                    
     'htmlmin.middleware.HtmlMinifyMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',      
 )
 
 ROOT_URLCONF = 'royalfashioncph.urls'
@@ -112,28 +114,50 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
+# Amazon S3 with Compressor
+# http://jeanphix.me/2012/02/08/django-heroku-compressor-storages/
 
-# Absolute filesystem path to the directory
-# that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-#MEDIA_ROOT = 'mediafiles'
+# Amazon AWS S3 credientials
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-#MEDIA_URL = '/media/'
+# S3 boto backend
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'royalfashioncph.storage.CachedS3BotoStorage'
+STATIC_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-#STATIC_ROOT = 'staticfiles'
+# Path settings
+PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+MEDIA_UPLOAD_ROOT = os.path.join(MEDIA_ROOT, 'uploads')
 
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-#STATIC_URL = '/static/'
+MEDIA_URL = STATIC_URL + 'media/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+# AWS S3 settings
+AWS_AUTO_CREATE_BUCKET = True
+AWS_HEADERS = {
+    "Cache-Control": "public, max-age=86400",
+}
+AWS_S3_FILE_OVERWRITE = False
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_SECURE_URLS = True
+AWS_REDUCED_REDUNDANCY = False
+AWS_IS_GZIPPED = False
+
+# Compressor
+COMPRESS_ENABLED = DEBUG is False
+if COMPRESS_ENABLED:
+    COMPRESS_CSS_FILTERS = [
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.CSSMinFilter',
+    ]
+    COMPRESS_STORAGE = 'royalfashioncph.storage.CachedS3BotoStorage'
+    COMPRESS_URL = STATIC_URL
+    COMPRESS_OFFLINE = True
+
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -143,13 +167,12 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-# Compress should send to and look in static url
-#COMPRESS_URL = STATIC_URL
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    'shop.context_processors.shop_collections',
 )
 
 # List of callables that know how to import templates from various sources.
@@ -212,31 +235,3 @@ LOGGING = {
     }
 }
 
-
-# Amazon S3 with Compressor
-# http://jeanphix.me/2012/02/08/django-heroku-compressor-storages/
-STATICFILES_STORAGE = 'royalfashioncph.storage.CachedS3BotoStorage'
-STATIC_URL = 'https://royalfashion.s3.amazonaws.com/'   
-
-PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
-MEDIA_UPLOAD_ROOT = os.path.join(MEDIA_ROOT, 'uploads')
-
-MEDIA_URL = STATIC_URL + 'media/'
-
-# Compressor
-COMPRESS_ENABLED = DEBUG is False
-if COMPRESS_ENABLED:
-    COMPRESS_CSS_FILTERS = [
-        'compressor.filters.css_default.CssAbsoluteFilter',
-        'compressor.filters.cssmin.CSSMinFilter',
-    ]
-    COMPRESS_STORAGE = 'royalfashioncph.storage.CachedS3BotoStorage'
-    COMPRESS_URL = STATIC_URL
-    COMPRESS_OFFLINE = True
-
-# Amazon AWS S3 credientials
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")

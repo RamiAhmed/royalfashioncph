@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %} {{ collection.name }} {% endblock %}
+{% block pagedescription %} {{ collection.description }} {% endblock %}
+
+{% block content %}
+<article id="{{ collection.id }}-{{ collection.name }}">
+    <h2>{{ collection.name }}</h2>
+    {% if collection.description %}<p class="text-center"><em>{{ collection.description }}</em></p>{% endif %}
+    
+    <section>
+        {% for product in products %}
+        {% if forloop.counter0|divisibleby:"4" or forloop.first %}
+        {% if not forloop.first %}</div>{% endif %}
+        <div class="row">
+        {% endif %}
+            
+            <div class="col-md-3">
+                <div class="shop-list-item">
+                    <a title="{{ product.name }}" href="{% url 'shop-details' collection.slug product.slug %}">
+                        {% if product.get_first_image %}
+                        <p><img class="img-responsive shop-image" alt="{{ product.get_first_image.image_title }}" src="{{ product.get_first_image.get_absolute_url }}"></p>
+                        {% endif %}
+                        <p>{{ product.name }}</p>
+                        {% if product.description %}<p><em>{{ product.description }}</em></p>{% endif %}
+                        <p>Pris: {{ product.price }} DKK</p>
+                    </a>
+                </div>
+            </div>
+            
+        {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
+    </section>
+    
+</article>
+{% endblock %}

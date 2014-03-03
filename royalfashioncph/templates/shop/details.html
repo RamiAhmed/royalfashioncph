@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %} {{ product.name }} - {{ collection.name }} {% endblock %}
+{% block pagedescription %} {{ product.description }} - {{ collection.name }} {% endblock %}
+
+{% block content %}
+<article id="{{ product.id }}-{{ product.name }}">
+    <h2>{{ product.name }}</h2>
+    
+    <div class="row">
+        <div class="col-sm-6">
+            {% if images %}
+            {% for image in images %}
+            <a href="{{ image.get_absolute_url }}" title="{{ image.image_title }}">
+                <img class="img-responsive shop-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}">
+            </a>
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-warning">Ingen billeder tilgængelig</div>
+            {% endif %}
+        </div>
+        <div class="col-sm-6 shop-product-details">
+            {% if product.description %}<p><em>{{ product.description }}</em></p>{% endif %}
+            <p>Pris: {{ product.price }} DKK</p>
+            {% if sizes %}
+            <p>
+                Størrelser: 
+                {% if 'S' in sizes %}S{% endif %}
+                {% if 'M' in sizes %} / M{% endif %}
+                {% if 'L' in sizes %} / L{% endif %}
+                {% if 'XL' in sizes %} / XL{% endif %}
+            </p>
+            {% endif %}
+            
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style">
+                <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53062a980fcd97b7"></script>
+            <!-- AddThis Button END -->
+        </div>
+    </div>       
+</article>
+{% endblock %}

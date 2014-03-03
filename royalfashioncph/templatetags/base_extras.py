@@ -5,12 +5,19 @@ from django.conf import settings
 register = template.Library()
 
 @register.simple_tag
+def navactive_complex(request, urls, slug):
+    if slug in request.path_info:
+        return "active"
+    
+    return ""
+
+@register.simple_tag
 def navactive(request, urls):
     if request.path in ( reverse(url) for url in urls.split() ):
-        return "active"
-
+        return "active"    
+    
     if urls in request.path_info:
-        return "active"
+        return "active"    
 
     return ""
 
