@@ -65,7 +65,7 @@
                     </li>
                     {% for collection in collections %}
                     <li class="{% navactive_complex request 'shop' collection.slug %}">
-                        <a href="{% url 'shop' collection.slug %}">{{ collection.name|upper }}</a>
+                        <a href="{{ collection.get_absolute_url }}">{{ collection.name|upper }}</a>
                     </li>
                     {% endfor %}
                 </ul>                
