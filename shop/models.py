@@ -41,6 +41,9 @@ class Product(models.Model):
     slug = models.SlugField(unique=True, max_length=255, verbose_name="URL; denne værdi bør aldrig ændres!")
     collection = models.ForeignKey('Collection', related_name="products", verbose_name="Tilhører kollektion")
     
+    def get_absolute_url(self):
+        return reverse('shop.views.details', args=[self.collection.slug, self.slug])
+    
     def get_first_image(self):
         return self.images.get(id=1)
     
