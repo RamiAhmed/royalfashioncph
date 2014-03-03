@@ -9,7 +9,7 @@ class ContactForm(forms.Form):
     sender_name = forms.CharField(required=False, max_length=200, label="Navn")
     sender_telephone = forms.CharField(max_length=8, label="Telefon Nummer (Kun danske numre)",
                                        validators=[
-                                           RegexValidator(r'^\d{8}$', 'Kun tallene 0-9 er tilladte', 'Ugyldigt telefonnummer'),
+                                           RegexValidator(r'^\d{8}$', 'Kun tallene 0-9 er tilladte', 'Ugyldigt telefon nummer'),
                                            MinLengthValidator(8),
                                        ])
     sender = forms.EmailField(label="Email Addresse")
