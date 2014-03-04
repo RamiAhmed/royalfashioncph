@@ -52,11 +52,11 @@ body, html {
     max-height: 5px;
         
     position: fixed;
-    bottom: 5px;
+    bottom: 2px;
     
     width: 82%;
 
-    padding: 10px 10px;
+    padding: 20px 10px 10px;
 
     background-color: rgb(25, 25, 25);
     color: #fffffc;
@@ -81,11 +81,12 @@ body, html {
 #alpha-link {
     color: rgb(50, 50, 50);
     font-size: 10px;
+    text-decoration: none;    
 }
 
 #footer-logo {
     margin: 10px auto;
-    width: 15%;
+    max-width: 15%;
     height: auto;
 }
 
@@ -130,6 +131,12 @@ body, html {
     margin: 10px 0px;
 }
 
+#searchbox {
+    float: right;
+    margin: 20px 10px;
+    padding: 5px;
+}
+
 #trendsales-link {
     background-image: url(img/trendsales-link.jpg);
     background-repeat: no-repeat;
@@ -153,6 +160,20 @@ body, html {
     width: 72px;
 }
 
+
+.search-result {
+    background-color: #FCFCFC;
+    margin: 10px;
+    padding: 10px;
+    
+    border-radius: 5px;
+    border: transparent;    
+}
+
+.search-result:hover,
+.search-result:focus {
+    background-color: rgb(240, 240, 240);
+}
 
 .shop-image {
     width: 100px;

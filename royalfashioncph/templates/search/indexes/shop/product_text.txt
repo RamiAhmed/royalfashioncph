@@ -1,0 +1,4 @@
+{{ object.name }}
+{{ object.description }}
+{{ object.price }}
+{{ object.collection.name }}

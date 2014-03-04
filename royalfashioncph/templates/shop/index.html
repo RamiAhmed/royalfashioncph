@@ -10,9 +10,8 @@
     {% if collection.description %}<p class="text-center"><em>{{ collection.description }}</em></p>{% endif %}
     
     <section>
-        {% for product in products %}
+    {% for product in products %}
         {% if forloop.counter0|divisibleby:"4" or forloop.first %}
-        {% if not forloop.first %}</div>{% endif %}
         <div class="row">
         {% endif %}
             
@@ -29,8 +28,8 @@
                 </div>
             </div>
             
-        {% if forloop.last %}</div>{% endif %}
-        {% endfor %}
+    {% if not forloop.first or forloop.last %}{% if forloop.counter|divisibleby:"4" or forloop.last %}</div>{% endif %}{% endif %}
+    {% endfor %}
     </section>
     
 </article>

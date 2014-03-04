@@ -68,6 +68,7 @@ THIRD_PARTY_APPS = (
     'storages',
     'raven.contrib.django.raven_compat',
     'sorl.thumbnail',
+    'haystack',
 )
 
 LOCAL_APPS = (
@@ -204,6 +205,18 @@ SECURE_FRAME_DENY = HTTPS
 SECURE_CONTENT_TYPE_NOSNIFF = HTTPS
 SECURE_BROWSER_XSS_FILTER = HTTPS
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+# Elastic Search Engine with Haystack
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': os.environ.get('SEARCHBOX_URL'),
+        'INDEX_NAME': 'haystack',
+        },
+    }
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 
 

@@ -42,6 +42,7 @@ urlpatterns = patterns('',
     
     url(r'^shop/(?P<collection_slug>[\w\-]+)/(?P<product_slug>[\w\-]+)/$', 'shop.views.details', name='shop-details'),    
     url(r'^shop/(?P<slug>[\w\-]+)/$', 'shop.views.index', name='shop'),
+    url(r'^search/', include('haystack.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 

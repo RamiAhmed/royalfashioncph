@@ -49,6 +49,12 @@
 <body>
     <div class="container-fluid">
       <header class="header">
+          <section id="searchbox">
+              <form id="search_form" role="search" action="/search" method="get">
+                  {{ search_form.as_p }}
+                  <input type="text" name="q" placeholder="Søg i produkter">
+              </form>              
+          </section>
       </header>
     </div>
     
