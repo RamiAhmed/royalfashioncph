@@ -5,7 +5,7 @@
 {% block pagedescription %} {{ product.description }} - {{ collection.name }} {% endblock %}
 
 {% block content %}
-<article id="{{ product.id }}-{{ product.name }}">
+<article id="{{ product.slug }}-{{ product.id }}">
     <h2>{{ product.name }}</h2>
     
     <div class="row">
@@ -13,7 +13,7 @@
             {% if images and product.get_first_image %}
             {% for image in images %}
             <a href="{{ image.get_absolute_url }}" title="{{ image.image_title }}">
-                <img class="img-responsive shop-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}">
+                <img class="img-responsive img-centered shop-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}">
             </a>
             {% endfor %}
             {% else %}

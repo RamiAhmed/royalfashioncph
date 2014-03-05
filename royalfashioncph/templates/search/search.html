@@ -10,7 +10,7 @@
 <h2>Søgning</h2>
 <article>
     {% if page.object_list %}
-    <p>{{ page.object_list|length }} artikler fundet.</p>
+    <p class="text-center">{{ page.object_list|length }} artikler fundet.</p>
     {% endif %}
 
 {% for result in page.object_list %}
@@ -20,11 +20,11 @@
             
         <div class="col-md-3">
             <section class="search-result">
-                <p>
+                <p class="text-center">
                     <a href="{{ result.object.get_absolute_url }}" title="{{ result.object.name }}">{{ result.object.name }}</a>
                 </p>
                 {% if result.object.description %}<p><em>{{ result.object.description }}</em></p>{% endif %}
-                <p>Pris: {{ result.object.price }}</p>
+                <p>Pris: {{ result.object.price }} DKK</p>
                 <p>
                     Tilhører kollektion: <a href="{{ result.object.collection.get_absolute_url }}" title="{{ result.object.collection.name }}">{{ result.object.collection.name }}</a>
                 </p>

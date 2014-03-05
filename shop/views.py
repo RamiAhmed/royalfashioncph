@@ -15,6 +15,6 @@ def details(request, collection_slug, product_slug):
     images = product.images.all()
     
     sizes_set = product.sizes.all()
-    sizes = "".join([str(i) for i in sizes_set.values_list()])
+    sizes = "".join([s.size for s in sizes_set])
     
     return render(request, 'shop/details.html', {'collection':collection, 'product':product, 'images':images, 'sizes':sizes})

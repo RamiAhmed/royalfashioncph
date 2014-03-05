@@ -7,135 +7,134 @@
 {% load base_extras %}
 
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <meta name="description" content="{% block pagedescription %}{% endblock %}"/>
-    <meta name="author" content="Alpha Stage Studios - Rami@alphastagestudios.com"/>
-
-    <!--<link rel="publisher" href="" />-->
-    <link rel="author" href="//www.royalfashioncph.dk{% url 'humanstxt' %}" />
-
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <link rel="icon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
-    <link rel="favicon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
-
-    {% bootstrap_css %}
-
-    <link href='//fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css'>
-
-    {% compress css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8">
-    {% endcompress %}
-
-    <title>
-        {% block title %}{% endblock %} | Royal Fashion Copenhagen
-    </title>
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    {% google_analytics %}
-</head>
-
-<body>
-    <div class="container-fluid">
-      <header class="header">
-          <section id="searchbox">
-              <form id="search_form" role="search" action="/search" method="get">
-                  {{ search_form.as_p }}
-                  <input type="text" name="q" placeholder="Søg i produkter">
-              </form>              
-          </section>
-      </header>
-    </div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        
+        <meta name="description" content="{% block pagedescription %}{% endblock %}"/>
+        <meta name="author" content="Alpha Stage Studios - Rami@alphastagestudios.com"/>
+        
+        <!--<link rel="publisher" href="" />-->
+        <link rel="author" href="//www.royalfashioncph.dk{% url 'humanstxt' %}" />
+        
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+        <link rel="icon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
+        <link rel="favicon" type="image/x-icon"  href="{% static 'favicon.ico' %}" >
+        
+        {% bootstrap_css %}
+        
+        <link href='//fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css' media="all">
+        
+        {% compress css inline %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" charset="utf-8" media="all">
+        {% endcompress %}
+        
+        <title>
+            {% block title %}{% endblock %} | Royal Fashion Copenhagen
+        </title>
+        
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+        
+        {% google_analytics %}
+    </head>
     
-    <div class="content">
+    <body>
         <div class="container-fluid">
-            <!-- SIDEBAR BEGIN -->
-            <div class="sidebar">
-                <ul class="nav nav-sidebar">
-                    <li class="{% navactive request 'home' %}">
-                        <a href="{% url 'home' %}">HJEM</a>
-                    </li>
-                    <li class="{% navactive request 'om-os' %}">
-                        <a href="{% url 'om-os' %}">OM OS</a>
-                    </li>
-                    {% for collection in collections %}
-                    <li class="{% navactive_complex request 'shop' collection.slug %}">
-                        <a href="{{ collection.get_absolute_url }}">{{ collection.name|upper }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>                
-            </div>
-            <!-- SIDEBAR END -->
             
-            <!-- PAGE CONTENT BEGIN -->
-            <div class="container content-main">
-                {% block content %}
-                {% endblock %}
-            </div>
-            <!-- PAGE CONTENT END -->
-            
-            <!-- FOOTER BEGIN -->
-            <footer class="footer">
-                <div class="row">
-                    <div class="col-md-4">
-                        <p class="text-center">
-                            <br>
-                            Royal Fashion IVS | CVR: <a title="Royal Fashion på CVR.dk" href="//cvr.dk/Site/Forms/PublicService/DisplayCompany.aspx?cvrnr=35639578" target="_blank">DK-35639578</a>
-                        </p>
-                    </div>
-                    <div class="col-md-4">    
-                        <img id="footer-logo" class="img-responsive" alt="Royal Fashion Krone Logo" src="{% static 'img/royal_logo_nobg.png' %}">
-                        <p class="text-center text-muted">
-                            <a id="alpha-link" href="//www.alphastagestudios.com" target="_blank" title="This website was designed by Alpha Stage Studios">Alpha Stage Studios</a>
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center">
-                            <br>
-                            Find os på:
-                        </p>
-                        
-                        <div class="addthis_toolbox addthis_32x32_style addthis_default_style">
-                            <a class="addthis_button_facebook_follow" addthis:userid="Royalfashion.dk"></a>
-                            
-                            <a id="trendsales-link" title="Trendsales" target="_blank" href="//www.trendsales.dk/search?q=royal%20fashion"></a>
-                        </div>
-                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53062a980fcd97b7"></script>
-                        
-                    </div>
-                </div>
-            </footer>    
-            <!-- FOOTER END -->
         </div>
-    </div>
-
-    {# Load javascript at bottom for speed optimization #}
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-
-    {% compress js inline %}
-    <script type="text/javascript">
-        if (typeof jQuery == 'undefined') {
-            document.write(unescape("%3Cscript src='{% static 'js/jquery.js' %}' type='text/javascript'%3E%3C/script%3E"));
-        }
-    </script>
-    {% endcompress %}
-
-
-    {# Load Bootstrap javascript #}
-    {% bootstrap_javascript %}
-
-
-</body>
-
+        
+        <div class="content">
+            <div class="container-fluid">
+                <!-- SIDEBAR BEGIN -->
+                <div class="sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="{% navactive request 'home' %}">
+                            <a href="{% url 'home' %}">HJEM</a>
+                        </li>
+                        <li class="{% navactive request 'om-os' %}">
+                            <a href="{% url 'om-os' %}">OM OS</a>
+                        </li>
+                        {% for collection in collections %}
+                        <li class="{% navactive_complex request 'shop' collection.slug %}">
+                            <a href="{{ collection.get_absolute_url }}">{{ collection.name|upper }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>                
+                </div>
+                <!-- SIDEBAR END -->
+                
+                <div class="page-container">
+                    
+                    <!-- PAGE HEADER BEGIN -->
+                    <header class="header">
+                        <img id="header-logo" class="img-responsive img-centered" alt="Royal Fashion Copenhagen Logo" src="{% static 'img/royal_fashion_logo.png' %}">
+                    </header> 
+                    <!-- PAGE HEADER END -->
+                    
+                    <!-- PAGE CONTENT BEGIN -->
+                    <div class="container content-main">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    <!-- PAGE CONTENT END -->
+                    
+                    <!-- FOOTER BEGIN -->
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="text-center">
+                                    <br>
+                                    &copy; Royal Fashion IVS | CVR: DK-35639578
+                                </p>
+                            </div>
+                            <div class="col-md-4">    
+                                <img id="footer-logo" class="img-responsive img-centered" alt="Royal Fashion Copenhagen Logo" src="{% static 'img/royal_fashion_logo.png' %}">
+                            </div>
+                            <div class="col-md-4">                        
+                                <section id="searchbox">
+                                    <form id="search_form" role="search" action="/search" method="get">
+                                        {{ search_form.as_p }}
+                                        <input type="text" name="q" placeholder="Søg i artikler">
+                                    </form>   
+                                    
+                                    <p>
+                                        <a id="alpha-link" href="//www.alphastagestudios.com" target="_blank" title="This website was designed by Alpha Stage Studios">Alpha Stage Studios</a>
+                                    </p>                                         
+                                </section>  
+                                
+                   
+                            </div>
+                        </div>
+                    </footer>   
+                    <!-- FOOTER END -->
+                    
+                </div>
+            </div>
+        </div>
+        
+        {# Load javascript at bottom for speed optimization #}
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+        
+        {% compress js inline %}
+        <script type="text/javascript">
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='{% static 'js/jquery.js' %}' type='text/javascript'%3E%3C/script%3E"));
+            }
+        </script>
+        {% endcompress %}
+        
+        
+        {# Load Bootstrap javascript #}
+        {% bootstrap_javascript %}
+        
+        
+    </body>
+    
 </html>

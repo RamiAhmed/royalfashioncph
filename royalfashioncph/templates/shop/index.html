@@ -5,7 +5,7 @@
 {% block pagedescription %} {{ collection.description }} {% endblock %}
 
 {% block content %}
-<article id="{{ collection.id }}-{{ collection.name }}">
+<article id="{{ collection.slug }}-{{ collection.id }}">
     <h2>{{ collection.name }}</h2>
     {% if collection.description %}<p class="text-center"><em>{{ collection.description }}</em></p>{% endif %}
     

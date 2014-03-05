@@ -12,25 +12,28 @@ body, html {
     font-size: 16px;
 }
 
+h1, h2, h3, h4, h5, h6, h7 {
+    text-align: center;   
+}
+
 .header {
     display: block;
-    
-    background-image: url(img/royal_fashion_logo.png);
-    background-repeat: no-repeat;
-    background-size: auto 150px;
-    background-position: center top;
 
-    margin: 0px auto;  
-    
     width: 100%;
-    height: 150px;
+    height: 200px;
+}
+
+.page-container {
+    margin-left: 230px; 
+    position: relative;
+    display: block;
 }
 
 .content {
     display: block;
 
-    margin-top: 10px;
-    margin-left: 235px;    
+    margin-top: 0px;
+    margin-left: 5px;
     
     max-width: 100%;
     min-height: 100%;
@@ -39,11 +42,11 @@ body, html {
 .content-main {
     display: block;
     
-    padding-bottom: 60px;
+    padding-bottom: 30px;
     padding-left: 10px;
     padding-right: 25px;
-  
-    min-height: 75%;
+    
+    margin-bottom: 40px;
 }
 
 .footer {
@@ -52,14 +55,14 @@ body, html {
     max-height: 5px;
         
     position: fixed;
-    bottom: 2px;
+    bottom: 0px;
     
     width: 82%;
 
     padding: 20px 10px 10px;
 
-    background-color: rgb(25, 25, 25);
-    color: #fffffc;
+    background-color: #e5f3ef;
+    color: rgb(25, 25, 25);
     
     border-radius: 2px;   
     
@@ -79,14 +82,25 @@ body, html {
 }
 
 #alpha-link {
-    color: rgb(50, 50, 50);
+    display: block;
+    color: rgb(55, 50, 50);
     font-size: 10px;
-    text-decoration: none;    
+    text-decoration: none;   
+    float: right;
+    
+    margin: 10px 5px;
+}
+
+#header-logo {
+    max-height: 90%;
+    width: auto;
+    
+    margin: 10px auto 0px;
 }
 
 #footer-logo {
-    margin: 10px auto;
-    max-width: 15%;
+    margin: 0px auto;
+    max-width: 50%;
     height: auto;
 }
 
@@ -95,7 +109,7 @@ body, html {
 
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 150px;
+    padding-top: 250px;
     width: 230px;
     
     margin-top: 10px;
@@ -104,6 +118,7 @@ body, html {
     border-right: 1px solid rgb(25, 25, 25);
 
     min-height: 90%;
+    max-height: 99%;
 
     position: fixed;
     left: 0px;
@@ -112,6 +127,11 @@ body, html {
 
     font-size: 18px;
     line-height: 30px;
+}
+
+.sidebar > .nav-sidebar {
+    position: absolute;
+    bottom: 25px;
 }
 
 .sidebar > .nav > li.active > a {
@@ -132,34 +152,36 @@ body, html {
 }
 
 #searchbox {
+    display: block;
     float: right;
-    margin: 20px 10px;
+    margin: 10px;
     padding: 5px;
+}
+
+.image-centered {
+    display: block;
+    margin: 5px auto;   
 }
 
 #trendsales-link {
-    background-image: url(img/trendsales-link.jpg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-    background-color: transparent;
-
     display: inline-block;
 
-    width: 36px;
-    height: 32px;
+    width: 76px;
+    height: 76px;
+}
 
-    border-color: transparent;
-    border-radius: 5px;
+#facebook-follow-button {
+    width: 76px;
+    height: 76px;
+}
 
+.index-follow-box {
     padding: 5px;
+    border: 1px solid rgb(25, 25, 25);
+    border-radius: 5px;
+    width: 83px;
+    float: right;
 }
-
-.addthis_toolbox {
-    margin: 1px auto;
-    width: 72px;
-}
-
 
 .search-result {
     background-color: #FCFCFC;
@@ -167,7 +189,7 @@ body, html {
     padding: 10px;
     
     border-radius: 5px;
-    border: transparent;    
+    border-color: transparent;    
 }
 
 .search-result:hover,
@@ -176,8 +198,11 @@ body, html {
 }
 
 .shop-image {
-    width: 100px;
+    max-width: 200px;
+    min-width: 75px;
+    
     height: 100px;
+    width: auto;
     
     margin: 5px auto;
 }
@@ -189,7 +214,7 @@ body, html {
     padding: 10px;
     
     border-radius: 5px;
-    border: transparent;
+    border-color: transparent;
 }
 
 .shop-list-item:hover,
@@ -204,5 +229,5 @@ body, html {
 
 .shop-product-details > .addthis_toolbox {
     width: 141px;
-    margin: 0px;
+    margin: 1px;
 }
