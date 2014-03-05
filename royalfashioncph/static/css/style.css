@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6, h7 {
 
 #alpha-link {
     display: block;
-    color: rgb(55, 50, 50);
+    color: rgb(200, 190, 190);
     font-size: 10px;
     text-decoration: none;   
     float: right;
@@ -230,4 +230,28 @@ h1, h2, h3, h4, h5, h6, h7 {
 .shop-product-details > .addthis_toolbox {
     width: 141px;
     margin: 1px;
+}
+
+
+.news-post {
+    background-color: #FCFCFC;
+    
+    margin: 10px;
+    padding: 10px;
+    
+    border-radius: 5px;
+    border-color: transparent;    
+}
+
+.news-image {
+    max-width: 150;
+    min-width: 50x;
+    
+    max-height: 200px;
+    min-height: 50px;
+    
+    height: auto;
+    width: auto;
+    
+    margin: 5px auto;    
 }

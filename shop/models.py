@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-
 from django.core.urlresolvers import reverse
 
-import datetime
-
 from sorl.thumbnail import ImageField
+from tinymce.models import HTMLField
+import datetime
 
 # Create your models here.
 class ProductImage(models.Model):
     image_title = models.CharField(max_length=200, verbose_name="Billed titel eller beskrivelse", blank=True)
-    image = ImageField(upload_to="/media/")
+    image = ImageField(upload_to="/media/products/")
     product = models.ForeignKey('Product', related_name="images", verbose_name="Tilhører produkt")
     
     def get_absolute_url(self):

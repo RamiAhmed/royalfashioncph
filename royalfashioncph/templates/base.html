@@ -61,6 +61,9 @@
                         <li class="{% navactive request 'om-os' %}">
                             <a href="{% url 'om-os' %}">OM OS</a>
                         </li>
+                        <li class="{% navactive request 'news' %}">
+                            <a href="{% url 'news' %}">NYHEDER</a>
+                        </li>
                         {% for collection in collections %}
                         <li class="{% navactive_complex request 'shop' collection.slug %}">
                             <a href="{{ collection.get_absolute_url }}">{{ collection.name|upper }}</a>

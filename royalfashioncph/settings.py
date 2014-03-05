@@ -68,12 +68,14 @@ THIRD_PARTY_APPS = (
     'raven.contrib.django.raven_compat',
     'sorl.thumbnail',
     'haystack',
+    'tinymce',
 )
 
 LOCAL_APPS = (
     'royalfashioncph',
     'shop',
     'contact',
+    'news',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -218,6 +220,19 @@ HAYSTACK_CONNECTIONS = {
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
+
+# TINY MCE
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "simple",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'relative_urls': True,
+}
+
+TINYMCE_SPELLCHECKER = False
+TINYMCE_COMPRESSOR = True
+#TINYMCE_JS_ROOT = os.path.join(PROJECT_ROOT, "static/tiny_mce/")
+#TINYMCE_JS_URL = os.path.join(PROJECT_ROOT, "static/tiny_mce/tiny_mce.js")
 
 
 # A sample logging configuration. The only tangible logging

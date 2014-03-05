@@ -18,12 +18,12 @@
             <div class="col-md-3">
                 <div class="shop-list-item">
                     <a title="{{ product.name }}" href="{{ product.get_absolute_url }}">
-                        {% if product.get_first_image %}
-                        <p><img class="img-responsive shop-image" alt="{{ product.get_first_image.image_title }}" src="{{ product.get_first_image.get_absolute_url }}"></p>
-                        {% endif %}
-                        <p>{{ product.name }}</p>
+                        <h3>{{ product.name }}</h3>
                         {% if product.description %}<p><em>{{ product.description }}</em></p>{% endif %}
                         <p>Pris: {{ product.price }} DKK</p>
+                        {% if product.get_first_image %}
+                        <p><img class="img-responsive shop-image" alt="{{ product.get_first_image.image_title }}" src="{{ product.get_first_image.get_absolute_url }}"></p>
+                        {% endif %}                        
                     </a>
                 </div>
             </div>
