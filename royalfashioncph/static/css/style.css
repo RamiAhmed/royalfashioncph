@@ -243,6 +243,16 @@ h1, h2, h3, h4, h5, h6, h7 {
     border-color: transparent;    
 }
 
+.news-post:hover,
+.news-post:focus {
+    background-color: rgb(240, 240, 240);
+}
+
+.news-post > a {
+    color: rgb(25, 25, 25);
+    text-decoration: none;
+}
+
 .news-image {
     max-width: 150;
     min-width: 50x;
@@ -255,3 +265,5 @@ h1, h2, h3, h4, h5, h6, h7 {
     
     margin: 5px auto;    
 }
+
+

@@ -17,22 +17,22 @@
     
         <div class="col-md-6">
             <article id="{{ news.slug }}-{{ news.id }}" class="news-post">
-                <h3><a href="{{ news.get_absolute_url }}" title="{{ news.title }}">{{ news.title }}</a></h3>
-                <p class="text-center"><em><time datetime="{{ news.added|date:'c' }}">{{ news.added|date:"j. F Y" }}</time>.</em></p>
-                
-                <div>{{ news.body|safe }}</div>        
-                
-                {% for image in news.images.all %}
-                {% if forloop.counter0|divisibleby:"2" or forloop.first %}<div class="row">{% endif %}
-                
-                    <div class="col-md-6">
-                        <a href="{{ image.get_absolute_url }}" title="{{ image.image_title }}">
+                <a href="{{ news.get_absolute_url }}" title="{{ news.title }}">
+                    <h3>{{ news.title }}</h3>
+                    <p class="text-center"><em><time datetime="{{ news.added|date:'c' }}">{{ news.added|date:"j. F Y" }}</time>.</em></p>
+                    
+                    <div>{{ news.body|safe }}</div>        
+                    
+                    {% for image in news.images.all %}
+                    {% if forloop.counter0|divisibleby:"2" or forloop.first %}<div class="row">{% endif %}
+                    
+                        <div class="col-md-6">
                             <img class="img-responsive img-centered news-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}">
-                        </a>
-                    </div>        
-                
-                {% if not forloop.first or forloop.last %}{% if forloop.counter|divisibleby:"2" or forloop.last %}</div>{% endif %}{% endif %}
-                {% endfor %}        
+                        </div>        
+                    
+                    {% if not forloop.first or forloop.last %}{% if forloop.counter|divisibleby:"2" or forloop.last %}</div>{% endif %}{% endif %}
+                    {% endfor %}   
+                </a>
             </article>
         </div>
         
