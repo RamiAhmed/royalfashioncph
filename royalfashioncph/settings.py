@@ -65,7 +65,6 @@ THIRD_PARTY_APPS = (
     'bootstrap3',
     'robots',
     'storages',
-    'raven.contrib.django.raven_compat',
     'sorl.thumbnail',
     'haystack',
     'tinymce',
