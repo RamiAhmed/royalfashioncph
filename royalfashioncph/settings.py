@@ -45,6 +45,11 @@ from memcacheify import memcacheify
 CACHES = memcacheify()
 
 # Application definition
+
+GRAPPELLI = (
+    'grappelli',            
+)             
+
 DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -66,7 +71,7 @@ THIRD_PARTY_APPS = (
     'storages',
     'sorl.thumbnail',
     'haystack',
-    'tinymce',
+#    'tinymce',
 )
 
 LOCAL_APPS = (
@@ -76,7 +81,7 @@ LOCAL_APPS = (
     'news',
 )
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = GRAPPELLI + DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.cache.UpdateCacheMiddleware',                    
@@ -228,9 +233,12 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 TINYMCE_SPELLCHECKER = False
-TINYMCE_COMPRESSOR = True
-#TINYMCE_JS_ROOT = os.path.join(PROJECT_ROOT, "static/tiny_mce/")
-#TINYMCE_JS_URL = os.path.join(PROJECT_ROOT, "static/tiny_mce/tiny_mce.js")
+TINYMCE_COMPRESSOR = False
+TINYMCE_JS_ROOT = os.path.join(PROJECT_ROOT, "static/grappelli/tinymce/")
+#TINYMCE_JS_URL = os.path.join(PROJECT_ROOT, "static/grappelli/tinymce/tiny_mce.js")
+
+# Grappelli Admin Site Settings
+GRAPPELLI_ADMIN_TITLE = "Admin | Royal Fashion Copenhagen"
 
 
 # Mandrill email settings
@@ -242,6 +250,7 @@ EMAIL_USE_TLS = True
 
 SERVER_EMAIL = "Royal Fashion Copenhagen <notifications@royalfashioncph.dk>"
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

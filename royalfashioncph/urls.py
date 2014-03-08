@@ -55,6 +55,7 @@ urlpatterns = patterns('',
     
     url(r'^tinymce/', include('tinymce.urls')),
 
+    url(r'^grappelli/', include('grappelli.urls')), 
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),

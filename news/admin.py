@@ -24,12 +24,11 @@ class NewsAdmin(admin.ModelAdmin):
     
     inlines = [NewsImageInline,]
     
-    class Media:
-        js = [
-              '/static/tiny_mce/tiny_mce.js',
-              '/static/tiny_mce/tiny_mce_popup.js',
-              #'/static/tiny_mce_setup/tinymce_setup.js',
-              ]
+    #class Media:
+    #    js = [
+    #          '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
+    #          '/static/grappelli/tinymce_setup/tinymce_setup.js',
+    #          ]
     
 admin.site.register(NewsImage, NewsImageAdmin)
 admin.site.register(NewsPost, NewsAdmin)
