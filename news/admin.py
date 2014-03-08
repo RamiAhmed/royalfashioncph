@@ -1,6 +1,7 @@
 from django.contrib import admin
 from news.models import NewsImage, NewsPost
 from sorl.thumbnail.admin import AdminImageMixin
+from wysihtml5.admin import AdminWysihtml5TextFieldMixin
 
 # Register your models here.
 class NewsImageAdmin(AdminImageMixin, admin.ModelAdmin):
@@ -11,7 +12,7 @@ class NewsImageAdmin(AdminImageMixin, admin.ModelAdmin):
 class NewsImageInline(admin.StackedInline):
     model = NewsImage
     
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(AdminWysihtml5TextFieldMixin, admin.ModelAdmin):
     list_display = ['title', 'added', 'active']
     
     list_filter = ['added', 'active']
@@ -23,12 +24,7 @@ class NewsAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ('title',)}
     
     inlines = [NewsImageInline,]
-    
-    #class Media:
-    #    js = [
-    #          '/static/grappelli/tinymce/jscripts/tiny_mce/tiny_mce.js',
-    #          '/static/grappelli/tinymce_setup/tinymce_setup.js',
-    #          ]
+
     
 admin.site.register(NewsImage, NewsImageAdmin)
 admin.site.register(NewsPost, NewsAdmin)

@@ -2,8 +2,8 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 
-from tinymce.models import HTMLField
 from sorl.thumbnail import ImageField
+from wysihtml5.fields import Wysihtml5TextField
 import datetime
 
 # Create your models here.
@@ -20,8 +20,7 @@ class NewsImage(models.Model):
 
 class NewsPost(models.Model):
     title = models.CharField(max_length=254, verbose_name="Nyheds titel")
-    #body = models.TextField(verbose_name="Nyheds tekst")
-    body = HTMLField(verbose_name="Nyheds tekst")
+    body = Wysihtml5TextField(verbose_name="Nyheds tekst")
     added = models.DateTimeField(default=datetime.datetime.now, verbose_name="Dato og tidspunkt tilføjet")
     active = models.BooleanField(default=True, verbose_name="Er denne nyhed aktiv?")
     slug = models.SlugField(unique=True, max_length=254, verbose_name="URL; denne værdi bør aldrig ændres!")

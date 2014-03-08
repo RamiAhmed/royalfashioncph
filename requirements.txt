@@ -16,6 +16,7 @@ django-pylibmc-sasl>=0.2.4
 django-robots>=1.0
 django-storages>=1.1.8 
 django-toolbelt>=0.0.1
+django-wysihtml5>=1.2b3  
 gevent>=0.13.4
 greenlet>=0.3.4
 gunicorn>=18.0
