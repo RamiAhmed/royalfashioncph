@@ -234,6 +234,16 @@ TINYMCE_COMPRESSOR = True
 #TINYMCE_JS_URL = os.path.join(PROJECT_ROOT, "static/tiny_mce/tiny_mce.js")
 
 
+# Mandrill email settings
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('MANDRILL_USERNAME')
+EMAIL_HOST_PASSWORD = os.environ.get('MANDRILL_APIKEY')
+EMAIL_USE_TLS = True
+
+SERVER_EMAIL = "Royal Fashion Copenhagen <notifications@royalfashioncph.dk>"
+DEFAULT_FROM_EMAIL = SERVER_EMAIL
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
