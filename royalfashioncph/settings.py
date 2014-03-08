@@ -360,6 +360,8 @@ WYSIHTML5_TOOLBAR = {
     },
 }
 
+WYSIHTML5_ALLOWED_TAGS = ('h3 h4 h5 h6 div p br b i u ul ol li span a blockquote')
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
