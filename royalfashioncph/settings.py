@@ -16,7 +16,7 @@ from django.utils.crypto import get_random_string
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_string(50, "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 HTTPS = False
@@ -31,7 +31,7 @@ MANAGERS = ADMINS
 SITE_ID = 1
 
 # Allowed hosts - # Update for new domain
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
+ALLOWED_HOSTS = ['*',]#os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -41,9 +41,8 @@ from postgresify import postgresify
 DATABASES = postgresify()
 
 # Cache
-if not DEBUG: 
-    from memcacheify import memcacheify
-    CACHES = memcacheify()
+from memcacheify import memcacheify
+CACHES = memcacheify()
 
 # Application definition
 DJANGO_APPS = (
@@ -159,7 +158,7 @@ if COMPRESS_ENABLED:
     ]
     COMPRESS_STORAGE = 'royalfashioncph.storage.CachedS3BotoStorage'
     COMPRESS_URL = STATIC_URL
-    COMPRESS_OFFLINE = True
+    COMPRESS_OFFLINE = False
 
 
 # List of finder classes that know how to find static files in
