@@ -13,13 +13,13 @@ def navactive_complex(request, urls, slug):
 
 @register.simple_tag
 def navactive(request, urls):
+    return_value = ""
     if request.path in ( reverse(url) for url in urls.split() ):
-        return "active"    
-    
-    if urls in request.path_info:
-        return "active"    
+        return_value = "active"    
+    elif urls in request.path_info:
+        return_value = "active"    
 
-    return ""
+    return return_value
 
 
 @register.tag

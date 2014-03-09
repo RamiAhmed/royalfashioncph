@@ -13,17 +13,18 @@
     {% for product in products %}
         {% if forloop.counter0|divisibleby:"4" or forloop.first %}
         <div class="row">
-        {% endif %}
-            
+        {% endif %}            
             <div class="col-md-3">
                 <div class="shop-list-item">
                     <a title="{{ product.name }}" href="{{ product.get_absolute_url }}">
                         <h3>{{ product.name }}</h3>
                         {% if product.description %}<p><em>{{ product.description }}</em></p>{% endif %}
                         <p>Pris: {{ product.price }} DKK</p>
-                        {% if product.get_first_image %}
-                        <p><img class="img-responsive shop-image" alt="{{ product.get_first_image.image_title }}" src="{{ product.get_first_image.get_absolute_url }}"></p>
-                        {% endif %}                        
+                        {% with image=product.get_first_image %}
+                        {% if image %}
+                        <p><img class="img-responsive shop-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}"></p>
+                        {% endif %}    
+                        {% endwith %}
                     </a>
                 </div>
             </div>

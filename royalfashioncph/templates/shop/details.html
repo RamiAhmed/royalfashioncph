@@ -10,7 +10,7 @@
     
     <div class="row">
         <div class="col-sm-6">
-            {% if images and product.get_first_image %}
+            {% if images %}
             {% for image in images %}
             <a href="{{ image.get_absolute_url }}" title="{{ image.image_title }}">
                 <img class="img-responsive img-centered shop-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}">
