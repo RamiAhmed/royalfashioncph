@@ -72,6 +72,7 @@ THIRD_PARTY_APPS = (
     'sorl.thumbnail',
     'haystack',
     'wysihtml5',
+    'collectfast',
 )
 
 LOCAL_APPS = (
@@ -152,6 +153,7 @@ AWS_QUERYSTRING_AUTH = False
 AWS_S3_SECURE_URLS = True
 AWS_REDUCED_REDUNDANCY = False
 AWS_IS_GZIPPED = False
+AWS_PRELOAD_METADATA = True
 
 # Compressor
 COMPRESS_ENABLED = DEBUG is False
