@@ -1,1 +1,1 @@
-web: python ./manage.py update_index; newrelic-admin run-program gunicorn -w 3 -k gevent --max-requests 500 royalfashioncph.wsgi
+web: python ./manage.py update_index; newrelic-admin run-program gunicorn -w 3 -k gevent --max-requests 500 royalfashioncph.wsgi --preload

@@ -16,7 +16,7 @@ from django.utils.crypto import get_random_string
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_string(50, "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 HTTPS = False
@@ -144,10 +144,14 @@ MEDIA_URL = STATIC_URL + 'media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 # AWS S3 settings
-AWS_AUTO_CREATE_BUCKET = True
+from datetime import date, timedelta
+yearfromtoday = date.today() + timedelta(days=365)
 AWS_HEADERS = {
-    "Cache-Control": "public, max-age=86400",
+    'Cache-Control': 'public, max-age=86400',
+    'Expires': yearfromtoday.strftime('%a, %d %b %Y 20:00:00 GMT'),
 }
+
+AWS_AUTO_CREATE_BUCKET = True
 AWS_S3_FILE_OVERWRITE = False
 AWS_QUERYSTRING_AUTH = False
 AWS_S3_SECURE_URLS = True
