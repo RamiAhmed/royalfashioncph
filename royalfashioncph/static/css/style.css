@@ -52,8 +52,9 @@ h1, h2, h3, h4, h5, h6, h7 {
 .footer {
     display: block;          
     position: fixed;
-    bottom: 0px;    
-    width: 82%;    
+    bottom: 0px; 
+    left: 240px;
+    right: 10px;
     padding: 20px 10px 10px;
     
     background-color: #e5f3ef;
@@ -121,6 +122,13 @@ h1, h2, h3, h4, h5, h6, h7 {
 .sidebar > .nav-sidebar {
     position: absolute;
     bottom: 25px;
+    
+    width: 90%;
+    margin-right: 10px;
+}
+
+.sidebar > .nav > li {
+    width: 100%;    
 }
 
 .sidebar > .nav > li.active > a {
