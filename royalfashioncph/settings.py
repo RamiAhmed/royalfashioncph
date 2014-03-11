@@ -16,7 +16,7 @@ from django.utils.crypto import get_random_string
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_string(50, "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 HTTPS = False
@@ -31,12 +31,10 @@ MANAGERS = ADMINS
 SITE_ID = 1
 
 # Allowed hosts - # Update for new domain
-ALLOWED_HOSTS = ['*',]#os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.herokuapp.com').split(':')
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-#import dj_database_url
-#DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))}
 from postgresify import postgresify
 DATABASES = postgresify()
 
@@ -45,7 +43,6 @@ from memcacheify import memcacheify
 CACHES = memcacheify()
 
 # Application definition
-
 GRAPPELLI = (
     'grappelli',            
 )             
@@ -292,7 +289,7 @@ WYSIHTML5_TOOLBAR = {
         "render_icon": "wysihtml5.widgets.render_formatBlockHeader_icon"
     },
     "formatBlockParagraph": {
-        "active": True,
+        "active": False,
         "command_name": "formatBlock",
         "render_icon": "wysihtml5.widgets.render_formatBlockParagraph_icon"
     },

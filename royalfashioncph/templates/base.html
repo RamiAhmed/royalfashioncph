@@ -51,17 +51,17 @@
             <div class="sidebar">
                 <ul class="nav nav-sidebar">
                     <li class="{% navactive request 'home' %}">
-                        <a href="{% url 'home' %}">HJEM</a>
+                        <a title="Hjem" href="{% url 'home' %}">HJEM</a>
                     </li>
                     <li class="{% navactive request 'om-os' %}">
-                        <a href="{% url 'om-os' %}">OM OS</a>
+                        <a title="Om Os" href="{% url 'om-os' %}">OM OS</a>
                     </li>
                     <li class="{% navactive request 'nyheder' %}">
-                        <a href="{% url 'nyheder' %}">NYHEDER</a>
+                        <a title="Nyheder" href="{% url 'nyheder' %}">NYHEDER</a>
                     </li>
                     {% for collection in collections %}
                     <li class="{% navactive_complex request 'shop' collection.slug %}">
-                        <a href="{{ collection.get_absolute_url }}">{{ collection.name|upper }}</a>
+                        <a title="{{ collection.name }}" href="{{ collection.get_absolute_url }}">{{ collection.name|upper }}</a>
                     </li>
                     {% endfor %}
                 </ul>                
