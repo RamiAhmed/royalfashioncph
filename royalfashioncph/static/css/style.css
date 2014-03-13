@@ -93,6 +93,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     margin: 10px 5px;
 }
 
+
 /* SIDEBAR */
 .sidebar {
     display: block;
@@ -158,15 +159,15 @@ h1, h2, h3, h4, h5, h6, h7 {
 #trendsales-link {
     display: inline-block;
     
-    width: 76px;
-    height: 76px;
+    width: 36px;
+    height: 36px;
 }
-
+/*
 #facebook-follow-button {
     width: 76px;
     height: 76px;
 }
-
+*/
 .follow-box { 
     padding: 5px;
     border: 1px solid #fffffa;
@@ -177,7 +178,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     right: 0px;
     
     width: 22px;
-    height: 165px;
+    height: 85px;
     
     background-color: #e5f3ef;
     
@@ -190,11 +191,11 @@ h1, h2, h3, h4, h5, h6, h7 {
 
 .follow-box:hover,
 .follow-box:focus {
-    width: 115px;   
+    width: 70px;   
 }
 
 .follow-box > a {
-    min-height: 76px;  
+    min-height: 38px;  
     margin-left: 20px;
 }
 
@@ -203,7 +204,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     position: absolute;
     width: 100px;
     margin: 0px;
-    top: 60px;
+    top: 20px;
     left: -50px; 
     font-size: 14px;
     font-weight: bold;
