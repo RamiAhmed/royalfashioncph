@@ -11,6 +11,8 @@ class ProductImage(models.Model):
     image_title = models.CharField(max_length=200, verbose_name="Billed titel eller beskrivelse", blank=True)
     image = ImageField(upload_to="/media/products/")
     product = models.ForeignKey('Product', related_name="images", verbose_name="Tilhører produkt")
+    photographer_name = models.CharField(max_length=255, verbose_name="Fotografs Navn", blank=True)
+    photographer_url = models.URLField(verbose_name="Fotografs Hjemmeside (URL)", blank=True)
     
     def get_absolute_url(self):
         return u'%s' % self.image.url
