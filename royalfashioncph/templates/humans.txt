@@ -12,9 +12,9 @@ From: Copenhagen, Denmark
 
 
 /* SITE */
-Last update: 2014/03/01
+Last update: 2014/03/16
 Standards: HTML5, CSS3
-Language: English
+Language: Danish
 Doctype: HTML5
-IDE: Sublime Text 2, Photoshop
+IDE: Sublime Text 2
 Software: Python, Django, Heroku
