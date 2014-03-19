@@ -14,7 +14,8 @@ def details(request, collection_slug, product_slug):
     product = get_object_or_404(Product, slug=product_slug)
     images = product.images.all()
     
-    sizes_set = product.sizes.all()
-    sizes = "".join([s.size for s in sizes_set])
+    #sizes_set = product.sizes.all()
+    #sizes = "".join([s.size for s in sizes_set])
+    sizes = product.get_sizes_string()
     
     return render(request, 'shop/details.html', {'collection':collection, 'product':product, 'images':images, 'sizes':sizes})

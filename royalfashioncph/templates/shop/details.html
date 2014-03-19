@@ -31,10 +31,22 @@
             {% if sizes %}
             <p>
                 Størrelser: 
-                {% if 'S' in sizes %}S{% endif %}
-                {% if 'M' in sizes %} / M{% endif %}
-                {% if 'L' in sizes %} / L{% endif %}
-                {% if 'XL' in sizes %} / XL{% endif %}
+                {% if 'XS' in sizes %}XS/{% endif %}
+                {% if 'S' in sizes %}S/{% endif %}
+                {% if 'M' in sizes %}M/{% endif %}
+                {% if 'L' in sizes %}L/{% endif %}
+                {% if 'XL' in sizes %}XL{% endif %}
+                
+                {% if '36' in sizes %}36/{% endif %}
+                {% if '37' in sizes %}37/{% endif %}
+                {% if '38' in sizes %}38/{% endif %}
+                {% if '39' in sizes %}39/{% endif %}
+                {% if '40' in sizes %}40/{% endif %}
+                {% if '41' in sizes %}41/{% endif %}
+                {% if '42' in sizes %}42/{% endif %}
+                {% if '43' in sizes %}43/{% endif %}
+                {% if '44' in sizes %}44/{% endif %}
+                {% if '45' in sizes %}45{% endif %}
             </p>
             {% endif %}
             

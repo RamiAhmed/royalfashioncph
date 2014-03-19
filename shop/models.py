@@ -22,16 +22,36 @@ class ProductImage(models.Model):
     
 class ProductSize(models.Model):
     SIZE_CHOICES = (
-        ('S', 'Small'),
-        ('M', 'Medium'),
-        ('L', 'Large'),
-        ('XL', 'Extra Large'),
+        ('ClothSizes', (
+                ('XS', 'Extra Small'),
+                ('S', 'Small'),
+                ('M', 'Medium'),
+                ('L', 'Large'),
+                ('XL', 'Extra Large'),
+            )
+        ),
+        ('ShoeSizes', (
+                ('36', '36'),
+                ('37', '37'),
+                ('38', '38'),
+                ('39', '39'),
+                ('40', '40'),
+                ('41', '41'),
+                ('42', '42'),
+                ('43', '43'),
+                ('44', '44'),
+                ('45', '45'),
+            )
+        )
+                       
+                       
     )
-    size = models.CharField(max_length=2, choices=SIZE_CHOICES, default='M')
-    product = models.ForeignKey('Product', related_name="sizes", verbose_name="Tilhører produkt")
+    size = models.CharField(max_length=2, choices=SIZE_CHOICES, default='M', verbose_name="Tilgængelige Størrelser")
+    product = models.ForeignKey('Product', related_name="sizes", verbose_name="Tilhører produkt", blank=True)
     
     def __unicode__(self):
         return u'%s' % self.size
+
     
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name="Produkt Navn", default="Produkt")
@@ -53,6 +73,10 @@ class Product(models.Model):
     
     def __unicode__(self):
         return u'%s' % self.name
+    
+    def get_sizes_string(self):
+        return ''.join([s.size for s in self.sizes.all()])       
+        
     
 class Collection(models.Model):
     name = models.CharField(max_length=100, verbose_name="Kollektion", default="Kollektion")
