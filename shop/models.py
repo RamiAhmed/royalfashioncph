@@ -73,9 +73,23 @@ class Product(models.Model):
     
     def __unicode__(self):
         return u'%s' % self.name
-    
+
     def get_sizes_string(self):
-        return ''.join([s.size for s in self.sizes.all()])       
+        sizes_list = ([s.size for s in self.sizes.all()])
+        shoe_sizes = False
+        for size in sizes_list:
+            if size.isdigit():
+                shoe_sizes = True
+                break
+    
+        if shoe_sizes:
+            sizes_list = list(set(sizes_list))
+            new_list = sorted(sizes_list)
+        else:
+            order_list = ['XS', 'S', 'M', 'L', 'XL',]
+            new_list = [size for size in order_list if size in sizes_list]
+
+        return ('/'.join([s for s in new_list]))
         
     
 class Collection(models.Model):
