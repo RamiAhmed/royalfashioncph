@@ -15,8 +15,8 @@
             <a href="{{ image.get_absolute_url }}" title="{{ image.image_title }}">
                 <img class="img-responsive img-centered shop-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}">
             </a>
-            {% if image.photographer_url and image.photographer_name %}<a href="{{ image.photographer_url }}" title="{{ image.photographer_name }}">{% endif %}
-                {% if image.photographer_name %}<p>Fotografi af {{ image.photographer_name }}</p>{% endif %}
+            {% if image.photographer_url and image.photographer_name %}<a href="{{ image.photographer_url }}" title="{{ image.photographer_name }}" target="_blank">{% endif %}
+                {% if image.photographer_name %}<p class="text-center">Fotografi af {{ image.photographer_name }}</p>{% endif %}
             {% if image.photographer_url and image.photographer_name %}</a>{% endif %}          
          
             {% endfor %}
