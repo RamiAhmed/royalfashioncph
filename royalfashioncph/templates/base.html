@@ -45,6 +45,10 @@
         <![endif]-->
         
         {% google_analytics %}
+        
+        {% block endhead %}
+        
+        {% endblock %}
     </head>
     
     <body>
@@ -81,7 +85,7 @@
                 <!-- PAGE HEADER END -->
                 
                 <!-- PAGE CONTENT BEGIN -->
-                <div class="container content-main">
+                <div id="main-content-container" class="container content-main">
                     {% block content %}
                     {% endblock %}
                 </div>
@@ -151,6 +155,9 @@
                 
         {# Load Bootstrap javascript #}
         {% bootstrap_javascript %}        
+        
+        {% block endbody %}
+        {% endblock %}
         
     </body>    
 </html>

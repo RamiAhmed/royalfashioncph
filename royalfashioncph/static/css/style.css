@@ -162,12 +162,7 @@ h1, h2, h3, h4, h5, h6, h7 {
     width: 36px;
     height: 36px;
 }
-/*
-#facebook-follow-button {
-    width: 76px;
-    height: 76px;
-}
-*/
+
 .follow-box { 
     padding: 5px;
     border: 1px solid #fffffa;
@@ -262,12 +257,9 @@ h1, h2, h3, h4, h5, h6, h7 {
 
 /* SHOP */
 .shop-image {
-    max-width: 200px;
-    min-width: 75px;
-    
-    height: 100px;
-    width: auto;
-    
+    width: 150px;
+    height: 256px;
+        
     margin: 5px auto;
 }
 

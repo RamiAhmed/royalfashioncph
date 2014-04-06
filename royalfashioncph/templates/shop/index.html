@@ -1,8 +1,24 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
 {% load bootstrap3 %}
+{% load compress %}
 
 {% block title %} {{ collection.name }} {% endblock %}
 {% block pagedescription %} {{ collection.description }} {% endblock %}
+
+{% block endhead %}
+
+<!-- Important Owl stylesheet -->
+{% compress css file %}
+<link rel="stylesheet" href="{% static 'owl-carousel/css/owl.carousel.css' %}">
+{% endcompress %}
+
+<!-- Default Theme -->
+{% compress css file %}
+<link rel="stylesheet" href="{% static 'owl-carousel/css/owl.theme.css' %}">
+{% endcompress %}
+
+{% endblock %}
 
 {% block content %}
 <article id="{{ collection.slug }}-{{ collection.id }}">
@@ -10,6 +26,31 @@
     {% if collection.description %}<p class="text-center"><em>{{ collection.description }}</em></p>{% endif %}
     
     <section>
+        <div id="shop-owl" class="owl-carousel">
+            {% for product in products %}
+            <div class="shop-list-item "> 
+                <a title="{{ product.name }}" href="{{ product.get_absolute_url }}">
+                    <h3>{{ product.name }}</h3>
+                    
+                    {% with product.images.all|first as image %}
+                    {% if image %}
+                    <img class="lazyOwl shop-image image-centered" alt="{{ image.image_title }}" data-src="{{ image.get_absolute_url }}">
+                    {% endif %}  
+                    {% endwith %}                    
+                    
+                    {% if product.description %}<p class="text-center"><em>{{ product.description }}</em></p>{% endif %}
+                    <p class="text-center">Pris: {{ product.price }} DKK</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>        
+    </section>
+    
+    <hr>
+    
+    <section>
+        <h3>Alle Artikler</h3>
+        
     {% for product in products %}
         {% if forloop.counter0|divisibleby:"4" or forloop.first %}
         <div class="row">
@@ -18,30 +59,40 @@
                 <div class="shop-list-item">
                     <a title="{{ product.name }}" href="{{ product.get_absolute_url }}">
                         <h3>{{ product.name }}</h3>
-                        {% if product.description %}<p><em>{{ product.description }}</em></p>{% endif %}
-                        <p>Pris: {{ product.price }} DKK</p>
+                        {% if product.description %}<p class="text-center"><em>{{ product.description }}</em></p>{% endif %}
+                        <p class="text-center">Pris: {{ product.price }} DKK</p>
                         
                         {% with sizes=product.get_sizes_string %}
                         {% if sizes %}
-                        <p>
-                            Størrelser: 
+                        <p class="text-center">
+                            Størrelser: <br>
                             {{ sizes }}
                         </p>
                         {% endif %}
                         {% endwith %}
                         
-                        {% with image=product.get_first_image %}
+                        {% with product.images.all|first as image %}
                         {% if image %}
                         <p><img class="img-responsive shop-image" alt="{{ image.image_title }}" src="{{ image.get_absolute_url }}"></p>
                         {% endif %}    
                         {% endwith %}
                     </a>
                 </div>
-            </div>
-            
+            </div>            
     {% if not forloop.first or forloop.last %}{% if forloop.counter|divisibleby:"4" or forloop.last %}</div>{% endif %}{% endif %}
     {% endfor %}
     </section>
     
 </article>
+{% endblock %}
+
+{% block endbody %}
+
+<!-- Include js plugin -->
+<script type="text/javascript" charset="utf-8" src="{% static 'owl-carousel/js/owl.carousel.min.js' %}"></script>
+
+{% compress js inline %}
+<script type="text/javascript" charset="utf-8" src="{% static 'owl-carousel/js/shop-carousel.js' %}"></script>
+{% endcompress %}
+
 {% endblock %}
